@@ -1,7 +1,8 @@
 import logo from './logo.svg'
 import './App.scss'
-import MyComponent from './Example/MyComponent.js'
-
+import TodoList from './TodoList/TodoList.js'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // class components
 // funtion components
 
@@ -20,10 +21,24 @@ const App = () => {
 			<header className="App-header">
 				<img src={logo} className="App-logo" alt="logo" />
 				<h2>
-					Hello World {_name}
+					TodoList - Hello World -{_name}
 				</h2>
-				<MyComponent />
+				<TodoList />
 			</header>
+			<ToastContainer
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
+			{/* Same as */}
+			<ToastContainer />
 		</div>
 	);
 }

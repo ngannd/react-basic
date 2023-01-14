@@ -1,43 +1,55 @@
 import React from "react";
 import ChildComponent from "./ChildComponent";
+import AddComponent from "./AddComponent";
 
 class MyComponent extends React.Component {
 	state = {
-		firstName: "",
-		lastName: ""
+		name: '12',
+		arrJobs: [
+			{
+				id: 1, Title: "ABC", Salary: "200"
+			},
+			{
+				id: 2, Title: "ABC1", Salary: "500"
+			},
+			{
+				id: 3, Title: "ABC2", Salary: "700"
+			}
+		]
 	}
-	handleOnchangeFirstName = (event) => {
+	addnewJobs = (data) => {
+		//console.log("Check data submit" + data);
 		this.setState({
-			firstName: event.target.value
+			arrJobs: [...this.state.arrJobs, data]
 		})
 	}
-	handleOnchangeLastName = (event) => {
+	deleteData = (item) => {
+		let data = this.state.arrJobs.filter(x => x.id !== item.id);
 		this.setState({
-			lastName: event.target.value
+			arrJobs: data
 		})
 	}
-	handleSubmit = (event) => {
-		event.preventDefault();
-		alert("Click me " + this.state.lastName + ' ' + this.state.firstName);
+
+	componentDidMount() {
+		console.log("run componentDidMount");
 	}
 
-
+	componentDidUpdate(prevProps, prevState) {
+		console.log("run componentDidUpdate", 'dữ liệu cũ State : ', prevState, 'dữ liệu mới State : ', this.state);
+	}
 
 	render() {
 		return (
 			<div>
-				<form >
-					<label htmlFor="fname">First name: </label><br />
-					<input type="text" id="fname" name="fname" value={this.state.firstName} onChange={(event) => this.handleOnchangeFirstName(event)} /><br />
-					<label htmlFor="lname">Last name:</label><br />
-					<input type="text" id="lname" name="lname" value={this.state.lastName} onChange={(event) => this.handleOnchangeLastName(event)} /><br /><br />
-					<input type="submit" value="Submit" onClick={(event) => this.handleSubmit(event)} />
-					<ChildComponent
-						name={this.state.firstName}
-						age={'25'}
-					/>
-				</form>
-
+				<AddComponent
+					name={'ngannd'}
+					age={'25'}
+					addnewJobs={this.addnewJobs}
+				/>
+				<ChildComponent
+					arrJobs={this.state.arrJobs}
+					deleteData={this.deleteData}
+				/>
 			</div>
 		)
 	}
