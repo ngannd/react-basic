@@ -4,7 +4,12 @@ import ChildComponent from "./ChildComponent";
 class MyComponent extends React.Component {
 	state = {
 		firstName: "",
-		lastName: ""
+		lastName: "",
+		arrJobs: [
+			{ id: "1", title: 'ABC', salary: "200 $" },
+			{ id: "2", title: 'ABC1', salary: "500 $" },
+			{ id: "3", title: 'ABC2', salary: "700 $" }
+		]
 	}
 	handleOnchangeFirstName = (event) => {
 		this.setState({
@@ -35,6 +40,7 @@ class MyComponent extends React.Component {
 					<ChildComponent
 						name={this.state.firstName}
 						age={'25'}
+						arrJobs={this.state.arrJobs}
 					/>
 				</form>
 
