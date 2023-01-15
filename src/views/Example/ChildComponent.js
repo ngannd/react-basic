@@ -1,71 +1,48 @@
 import React from "react";
+import "./Demo.scss"
+
 
 class ChildComponent extends React.Component {
 	state = {
 		isShow: false
-	};
-	handleOnclickShow = (event) => {
+	}
+	handleOnclick = (event) => {
 		event.preventDefault();
 		this.setState({
 			isShow: !this.state.isShow
-		})
+		});
 	}
+	handleClickDelete = (item) => {
+		this.props.deleteData(item)
+	}
+
 	render() {
+		//console.log(this.props)
 		let { name, age, arrJobs } = this.props;
+		let button;
+		if (this.state.isShow === true) {
+			button = <div className="list-items">
+				{
+					arrJobs.map((item, index) => {
+						return (
+							<div className="item" key={item.id}>
+								Tên : {item.Title} <></> <span onClick={() => this.handleClickDelete(item)}>x</span>
+							</div>
+						)
+					})
+				}
+				<button onClick={(event) => this.handleOnclick(event)}>Hide</button>
+			</div>
+		} else {
+			button = <button className="button-show" onClick={(event) => this.handleOnclick(event)}>Show</button>
+		}
 		return (
 			<div>
-				{this.state.isShow === true ?
-					<div className="array-list12">
-						<h2>ChildComponent Tên : {name} - {age}</h2>
-						{
-							arrJobs.map((item, index) => {
-								return (
-									<div className="array-list" key={item.id}>
-										title: {item.title} - salary:{item.salary}
-									</div>
-								)
-							}
-							)
-						}
-						<button onClick={(event) => this.handleOnclickShow(event)}>Hide</button>
-					</div> : <button onClick={(event) => this.handleOnclickShow(event)}>Show</button>
-				}
-
+				<h2>Tên : {name} - tuổi : {age}</h2>
+				{button}
 			</div>
 		)
 	}
 }
-
-// const ChildComponent = (props) => {
-// 	let { name, age, arrJobs } = props
-// 	let isShow = false;
-// 	handleOnclickShow = () => {
-
-// 	}
-// 	return (
-// 		<div>
-// 			<h2>ChildComponent Tên : {name} - {age}</h2>
-// 			{isShow === true ?
-
-// 				arrJobs.map((item, index) => {
-// 					return (
-// 						<div className="array-list" key={item.id}>
-// 							title1: {item.title} - salary:{item.salary}
-// 						</div>
-// 					)
-// 				}
-// 				)
-// 				: ""
-// 			}
-
-// 			<button onClick={() => this.handleOnclickShow()}>Show</button>
-// 			<button onClick={() => this.handleOnclickShow()}>Hide</button>
-
-
-// 		</div>
-// 	)
-// }
-
-
 
 export default ChildComponent
