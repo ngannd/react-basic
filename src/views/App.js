@@ -1,4 +1,5 @@
 import './App.scss'
+import React from 'react'
 import logo from './logo.svg'
 import TodoList from './TodoList/TodoList.js'
 import Mycomponent from './Example/MyComponent'
@@ -9,6 +10,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from './Home';
 import ListUser from './ListUser/ListUser';
 import DetailUser from './ListUser/DetailUser';
+
 // const user = {
 // 	login: 'ngannd',
 // 	name: 'Nguyễn Đắc Ngàn'
